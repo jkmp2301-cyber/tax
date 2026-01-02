@@ -67,6 +67,12 @@
 
 <script>
 function sendWhatsApp() {
+
+  // Get last response number or start from 1
+  let count = localStorage.getItem("taxFormCount");
+  count = count ? parseInt(count) + 1 : 1;
+  localStorage.setItem("taxFormCount", count);
+
   let name = document.getElementById("fullName").value;
   let email = document.getElementById("email").value;
   let phone = document.getElementById("phone").value;
@@ -75,6 +81,7 @@ function sendWhatsApp() {
 
   let text =
     `Tax Form 2026%0A` +
+    `Response No: ${count}%0A` +
     `--------------------%0A` +
     `Name: ${name}%0A` +
     `Email: ${email}%0A` +
@@ -86,6 +93,7 @@ function sendWhatsApp() {
   window.open(url, "_blank");
 }
 </script>
+
 
 </body>
 </html>
